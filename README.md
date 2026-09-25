@@ -24,6 +24,8 @@ bloqueo por país**, así que se puede usar desde cualquier lugar.
 
 ## Acceso
 
+La guía de uso para quien carga el contenido está en [GUIA-MANTENIMIENTO.md](GUIA-MANTENIMIENTO.md).
+
 Solo pueden entrar los usuarios que estén en la tabla `admin_users` de Supabase. Para agregar uno:
 
 1. Supabase → Authentication → Users → **Add user** (correo y contraseña).
