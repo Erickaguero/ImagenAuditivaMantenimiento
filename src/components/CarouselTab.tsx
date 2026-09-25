@@ -3,7 +3,7 @@ import { EyeOff, Info, Loader2, Music } from "lucide-react";
 import { toast } from "sonner";
 import { Switch } from "@/components/ui/switch";
 import { supabase, type EventData } from "@/lib/supabase";
-import { formatShortDate, todayISO } from "@/lib/format";
+import { formatShortDate, upcomingEventsFilter } from "@/lib/format";
 
 /** Cuántos eventos muestra el sitio en el carrusel cuando no hay ninguno destacado. */
 const AUTO_COUNT = 3;
@@ -32,7 +32,7 @@ export default function CarouselTab() {
     const { data, error } = await supabase
       .from("events")
       .select("*")
-      .gte("date_short", todayISO())
+      .or(upcomingEventsFilter())
       .order("date_short", { ascending: true })
       .order("time", { ascending: true });
     if (error) toast.error("No se pudieron cargar los eventos.");
@@ -66,8 +66,8 @@ export default function CarouselTab() {
       <div className="bg-card p-6 rounded-2xl border border-border">
         <h1 className="text-2xl font-bold">Carrusel del inicio</h1>
         <p className="text-muted-foreground text-sm mt-1">
-          Elegí qué eventos aparecen en el carrusel grande de la página de inicio. Cuando la fecha de un evento pasa,
-          sale solo del carrusel.
+          Elegí qué eventos aparecen en el carrusel grande de la página de inicio. Cuando llegan la fecha y
+          la hora de un evento, sale solo del carrusel.
         </p>
       </div>
 

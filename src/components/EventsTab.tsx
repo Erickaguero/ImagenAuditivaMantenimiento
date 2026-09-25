@@ -3,7 +3,7 @@ import { Copy, EyeOff, Loader2, Music, Pencil, Plus, Search, Star } from "lucide
 import { toast } from "sonner";
 import { removeUnusedImage } from "@/lib/images";
 import { supabase, type EventData } from "@/lib/supabase";
-import { formatShortDate, todayISO } from "@/lib/format";
+import { formatShortDate, isEventPast } from "@/lib/format";
 import EventFormModal, { type EventFormMode } from "./EventFormModal";
 import { DeleteButton, PrimaryButton, inputClass } from "./FormParts";
 
@@ -34,17 +34,16 @@ export default function EventsTab() {
     load();
   }, [load]);
 
-  const today = todayISO();
   const visible = useMemo(() => {
     const term = search.trim().toLowerCase();
     const list = events.filter((e) => {
-      if (filter === "upcoming" && e.date_short < today) return false;
-      if (filter === "past" && e.date_short >= today) return false;
+      if (filter === "upcoming" && isEventPast(e)) return false;
+      if (filter === "past" && !isEventPast(e)) return false;
       if (!term) return true;
       return [e.artist, e.venue, e.city].some((v) => v?.toLowerCase().includes(term));
     });
     return filter === "past" ? list.reverse() : list;
-  }, [events, search, filter, today]);
+  }, [events, search, filter]);
 
   async function toggle(event: EventData, field: "in_slider" | "published") {
     const value = !event[field];
@@ -69,7 +68,7 @@ export default function EventsTab() {
     removeUnusedImage(event.poster);
   }
 
-  const featuredCount = events.filter((e) => e.in_slider && e.published && e.date_short >= today).length;
+  const featuredCount = events.filter((e) => e.in_slider && e.published && !isEventPast(e)).length;
 
   return (
     <div className="space-y-6">

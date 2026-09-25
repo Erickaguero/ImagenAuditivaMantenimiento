@@ -51,7 +51,8 @@ Tocá la **estrella ★** del evento, o usá la pestaña **Carrusel** (ver secci
   ve en el sitio pero queda guardado, y lo podés volver a publicar.
 - **Eliminar**: ícono del **tacho de basura** → confirmar. No se puede deshacer.
 
-Los eventos cuya fecha ya pasó se mueven solos a la pestaña "Eventos pasados" del sitio; no hace falta
+Cuando llegan la fecha y la hora de un evento (o termina el día, si no tiene hora), pasa solo a la
+pestaña "Eventos pasados" del sitio; no hace falta
 borrarlos. En el panel podés filtrar por **Próximos**, **Pasados** o **Todos**.
 
 ---
@@ -62,7 +63,7 @@ Pestaña **Carrusel**. Arriba ves **cómo se ve ahora** el carrusel grande de la
 abajo, la lista de los próximos eventos con un interruptor **En el carrusel**.
 
 - Encendé el interruptor de los eventos que querés mostrar. Se guarda al instante.
-- Salen en orden de fecha y, cuando la fecha pasa, salen solos del carrusel.
+- Salen en orden de fecha y, cuando llegan la fecha y la hora del evento, salen solos del carrusel.
 - Si no elegís ninguno, el sitio muestra automáticamente los 3 próximos eventos.
 - Un evento **oculto** o **sin póster** no aparece en el carrusel aunque esté elegido.
 
